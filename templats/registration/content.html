@@ -1,0 +1,60 @@
+{% load static %}
+
+
+<!-- /.content-wrapper -->
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header" style="background-color: rgb(146, 136, 174);">
+
+          <form action="{% url 'account:search' %}">
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search" style="background-color: rgb(241, 238, 235);">
+  
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- /.card-header -->
+        
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>عنوان</th>
+                        <th>متن کتاب</th>
+                        <th>نویسنده</th>
+                        <th>تصویر</th>
+                        <th>وضعیت</th>
+                    </tr>
+                    </thead>
+                    {% for list in list_books %}
+                    <tbody>
+                    <tr>
+                        <td><a href="{% url 'account:update' list.id %}">{{list.title}}</a></td>
+                        <td>{{list.content|truncatewords:"20"|safe}}</td>
+                        <td>{{list.author}}</td>
+                        <td><img src="{{list.img.url}}" width="120px"></span></td>
+                        <td>
+                          {% if list.status == True %}
+                          <span class="badge badge-success">منتشر شده</span>
+                          {% else %}
+                          <span class="badge badge-danger">منتشر نشده</span>
+                          {% endif %}
+                          <span class="badge badge-warning"><a href="{% url 'account:delete' list.id %}">حذف کتاب</a></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+                    
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>

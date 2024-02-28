@@ -1,0 +1,10 @@
+<ul class="navbar-nav ms-auto py- py-lg-0">
+    {% for cat in cat.kid.all %}
+        <li class="nav-item">
+            <a class="nav-link px-lg-4 py-3 py-lg-4" href="{% url 'blog:category' cat.id %}">{{ cat.title }}</a>
+            {% if cat.kid.all %}
+                {% include 'blogs/cat_loop.html' %}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

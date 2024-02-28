@@ -1,0 +1,49 @@
+{% load crispy_forms_tags %}
+
+<div class="col-md-12">
+    <div class="card card-info">
+        <div class="card-header">
+            <h3 class="card-title mb-0 float-left">مقاله خود را اضافه کنید</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                    {{ form.title|as_crispy_field }}
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12 mb-0">
+                        {{ form.content|as_crispy_field }}
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-0">
+                        {{ form.category|as_crispy_field }}
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-0">
+                            {{ form.img|as_crispy_field }}
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-0">
+                            {{ form.time_publish|as_crispy_field }}
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-8 mb-0">
+                            {{ form.writer_book|as_crispy_field }}
+                    </div>
+                    {% if user.is_superuser %}
+                        <div class="form-row">
+                            <div class="form-group col-md-6 mb-0">
+                            {{ form.author|as_crispy_field }}
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 mb-0">
+                            {{ form.status|as_crispy_field }}
+                        </div>
+                    {% endif %}
+                <button type="submit" class="btn btn-primary">ثبت کتاب</button>
+
+            </form>
+        </div>
+</div>

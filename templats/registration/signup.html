@@ -1,0 +1,56 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>صفحه ورود به پنل کاربری</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'font-awesome/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'font-awesome/css/rtl_login.css' %}" />
+
+    <script type="text/javascript" src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+
+<div class="container" style="background-color: rgb(198, 212, 214);">
+
+<div class="page-header" style="text-align: center;">
+    <h1>ثبت نام</h1>
+</div>
+
+<!-- Simple Login - START -->
+<form class="col-md-12" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {{form.username|add_class:"form-control input-lg"}}
+    </div>
+    <div class="form-group">
+        {{form.email|add_class:"form-control input-lg"}}
+    </div>
+    <div class="form-group">
+        {{form.password1|add_class:"form-control input-lg"}}
+    </div>
+    <div class="form-group">
+        {{form.password2|add_class:"form-control input-lg"}}
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">ثبت اطلاعات</button><hr><br>
+        <span class="pull-right">
+            <a href="{% url 'account:login' %}">
+                <h2>
+                    ورود  
+                </h2>
+            </a>
+        </span>
+    </div>
+</form>
+<!-- Simple Login - END -->
+
+</div>
+
+</body>
+</html>
